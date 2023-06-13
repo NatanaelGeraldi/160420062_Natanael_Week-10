@@ -33,7 +33,7 @@ class EditTodoFragment : Fragment() {
         btnAdd.text = "Save"
 
         val uuid = EditTodoFragmentArgs.fromBundle(requireArguments()).uuid
-        val is_done = EditTodoFragmentArgs.fromBundle(requireArguments()).isDone
+        val is_done = EditTodoFragmentArgs.fromBundle(requireArguments())
         btnAdd.setOnClickListener{
 
             val txtTitle = view.findViewById<EditText>(R.id.txtInputTitle)
@@ -68,7 +68,7 @@ class EditTodoFragment : Fragment() {
                 3 -> high?.isChecked = true
             }
             when (it.is_done){
-                
+
             }
 
         })

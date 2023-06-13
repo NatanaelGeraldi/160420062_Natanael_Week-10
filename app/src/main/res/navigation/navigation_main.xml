@@ -29,9 +29,5 @@
         <argument
             android:name="uuid"
             app:argType="integer" />
-        <argument
-            android:name="is_done"
-            app:argType="integer"
-            android:defaultValue="0" />
     </fragment>
 </navigation>

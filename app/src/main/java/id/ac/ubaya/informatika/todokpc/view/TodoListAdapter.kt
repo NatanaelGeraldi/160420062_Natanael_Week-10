@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.ac.ubaya.informatika.todokpc.R
 import id.ac.ubaya.informatika.todokpc.model.Todo
 
-class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Todo) -> Unit)
+class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (uuid:Int) -> Unit)
     : RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>() {
     class TodoViewHolder(var view: View): RecyclerView.ViewHolder(view)
 
@@ -25,8 +25,10 @@ class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Todo) -
         checkTask.text = todoList[position].title
         checkTask.isChecked = false
         checkTask.setText(todoList[position].title.toString())
-        checkTask.setOnCheckedChangeListener { compoundButton, isChecked ->
-            adapterOnClick(todoList[position])
+        checkTask.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                adapterOnClick(todoList[position].uuid)
+            }
         }
 
         var imgEdit = holder.view.findViewById<ImageView>(R.id.imgEdit)
@@ -35,14 +37,6 @@ class TodoListAdapter(val todoList:ArrayList<Todo>,val adapterOnClick : (Todo) -
             val action = TodoListFragmentDirections.todoListToEditTodo(todoList[position].uuid)
             Navigation.findNavController(it).navigate(action)
         }
-
-       checkTask.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if(isChecked == true) {
-                adapterOnClick(todoList[position])
-            }
-        }
-
-
     }
     override fun getItemCount(): Int {
         return todoList.size

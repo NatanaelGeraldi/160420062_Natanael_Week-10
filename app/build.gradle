@@ -8,6 +8,10 @@ plugins {
 android {
     compileSdk 33
 
+    dataBinding{
+        enabled true
+    }
+
     defaultConfig {
         applicationId "id.ac.ubaya.informatika.todokpc"
         minSdk 21
